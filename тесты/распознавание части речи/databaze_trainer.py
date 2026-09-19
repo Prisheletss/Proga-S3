@@ -42,7 +42,7 @@ def grad(target, code):
 
     dW = []
     dB = []
-    step = 0.01
+    step = 1
     
     for i in range(output_len):
         dW.append([])
@@ -107,12 +107,14 @@ B = numpy.array(B)
 
 
 
-db = sqlite3.connect("data.db")
+database = sqlite3.connect("data.db")
 
-c = db.cursor()
+cursor = database.cursor()
 
-c.execute('SELECT * FROM `trainig_data`')
-data = c.fetchall()
+cursor.execute('SELECT * FROM `trainig_data`')
+data = cursor.fetchall()
+
+database.close()
 
 
 
@@ -187,15 +189,20 @@ letters = {
     ' ': 0
 }
 
+step = 1
 
 
-while True:
+
+for asdf in range(1):
+    print("===== ===== ===== =====")
+    print(asdf)
     for i in data:
+        print(i[0])
         word = i[0]
         target = i[1::]
 
         word = word + (20-len(word))*' '
-        code = [letters[j] for j in word]
+        code = [letters[j]/66 for j in word]
         
         
         """
@@ -211,37 +218,19 @@ while True:
 
         result = Calculate(code, W, B)
         c0 = accuracy(target, result)
+
+
         
-        while True:
+        for i in range(100):
             dW, dB = grad(target, code)
 
-            W -= 0.01*dW
-            B -= 0.01*dB
-
-            w = [[float(W[j][k]) for k in range(input_len)] for j in range(output_len)]
-            b = [float(B[j][0]) for j in range(output_len)]
-
-            result = Calculate(code, W, B)
-            c1 = accuracy(target, result)
-
-            #print(*w, sep='\n')
-            #print("\n\n")
-            #print(*b)
-            #print("\n\n")
-            #print(*result)
-            #print("\n\n")            
-            #print(word, c0, c1)
-
-            #print("\n\n\n\n\n\n")
-            print(c1)
-
-            break
-
-        break
+            W -= step*dW
+            B -= step*dB
 
 
-        #w = [[float(W[j][k]) for k in range(input_len)] for j in range(output_len)]
-        #b = [float(B[j][0]) for j in range(output_len)]
+
+        w = [[float(W[j][k]) for k in range(input_len)] for j in range(output_len)]
+        b = [float(B[j][0]) for j in range(output_len)]
 
         result = Calculate(code, W, B)
         c1 = accuracy(target, result)
@@ -254,18 +243,35 @@ while True:
 
         #print("\n\n\n\n\n\n")
 
-        print(c1)
-    break
+        #print(f"Слово: {word}")
+        #print("Цель:", end=' ')
+        #print(*target, sep='\t')
+        #print("Результат:", end=' ')
+        #print(*result, sep='\t')
+        #print("Точность:", c0, c1)
+
+        #print('\n\n')
+
+
 
 
 
     
-    
+try:
+    file = open("second generation.txt", 'x')
+except FileExistsError:
+    file = open("second generation.txt", 'w')
 
 
 
+for i in range(output_len):
+    print("progress:", i+1, '/', output_len)
+    for j in range(input_len):
+        file.write(f"{W[i][j]}\t")
+    file.write(f"{B[i]}\n")
 
 
+file.close()
 
 
 
@@ -370,4 +376,5 @@ while True:
 
 
 
-db.close()
+
+
