@@ -2,6 +2,7 @@ import sqlite3
 import numpy
 import copy
 from math import *
+from random import *
 
 
 
@@ -42,7 +43,7 @@ def grad(target, code):
 
     dW = []
     dB = []
-    step = 1
+    step = 0.1
     
     for i in range(output_len):
         dW.append([])
@@ -67,55 +68,6 @@ def grad(target, code):
     dB = numpy.array([[i] for i in dB])
 
     return dW, dB
-
-
-
-#def values_tester()
-
-
-
-
-
-
-
-file = open("weights and biases.txt", 'r')
-
-W = []
-B = []
-
-
-line = file.readline()
-line = line.split('\t')
-input_len, output_len = map(int, line)
-
-
-for line in file:
-    line = list(map(float, line.split('\t')))
-    W.append(line[0:-1])
-    B.append([line[-1]])
-
-file.close()
-
-
-W = numpy.array(W)
-B = numpy.array(B)
-
-
-
-
-
-
-
-
-database = sqlite3.connect("data.db")
-
-cursor = database.cursor()
-
-cursor.execute('SELECT * FROM `trainig_data`')
-data = cursor.fetchall()
-
-database.close()
-
 
 
 
@@ -189,11 +141,87 @@ letters = {
     ' ': 0
 }
 
-step = 1
 
 
 
-for asdf in range(1):
+def study(train_data):
+    global W, B
+
+    step = 0.1
+
+    word = train_data[0]
+    target = train_data[1::]
+
+    word = word + (20-len(word))*' '
+    code = [letters[j]/66 for j in word]
+
+    result = Calculate(code, W, B)
+    c = accuracy(target, result)
+
+        
+    print(f"Слово: {word}")
+    print("Точность:", c)
+
+    dW, dB = grad(target, code)
+
+    W -= step*dW
+    B -= step*dB
+
+    
+
+
+
+
+
+
+
+file = open("weights and biases.txt", 'r')
+
+W = []
+B = []
+
+
+line = file.readline()
+line = line.split('\t')
+input_len, output_len = map(int, line)
+
+
+for line in file:
+    line = list(map(float, line.split('\t')))
+    W.append(line[0:-1])
+    B.append([line[-1]])
+
+file.close()
+
+
+W = numpy.array(W)
+B = numpy.array(B)
+
+
+
+
+
+
+
+
+database = sqlite3.connect("data.db")
+
+cursor = database.cursor()
+
+cursor.execute('SELECT * FROM `trainig_data`')
+data = cursor.fetchall()
+
+database.close()
+
+
+
+
+
+
+
+
+"""
+for asdf in range(4):
     print("===== ===== ===== =====")
     print(asdf)
     for i in data:
@@ -204,24 +232,24 @@ for asdf in range(1):
         word = word + (20-len(word))*' '
         code = [letters[j]/66 for j in word]
         
-        
-        """
-        print(f"Слово: {word}")
-        print("Цель:", end=' ')
-        print(*target, sep='\t')
-        print("Результат:", end=' ')
-        print(*result, sep='\t')
-        print("Точность:", c)
-
-        print('')
-        """
 
         result = Calculate(code, W, B)
         c0 = accuracy(target, result)
 
+        
+        print(f"Слово: {word}")
+        #print("Цель:", end=' ')
+        #print(*target, sep='\t')
+        #print("Результат:", end=' ')
+        #print(*result, sep='\t')
+        print("Точность:", c0)
+
+        print('')
+        
+
 
         
-        for i in range(100):
+        for i in range(150):
             dW, dB = grad(target, code)
 
             W -= step*dW
@@ -251,16 +279,24 @@ for asdf in range(1):
         #print("Точность:", c0, c1)
 
         #print('\n\n')
+"""
 
+
+
+
+for i in range(10_000):
+    train = data[randint(0, len(data)-1)]
+    study(train)
+    print('')
 
 
 
 
     
 try:
-    file = open("second generation.txt", 'x')
+    file = open("third generation.txt", 'x')
 except FileExistsError:
-    file = open("second generation.txt", 'w')
+    file = open("third generation.txt", 'w')
 
 
 
