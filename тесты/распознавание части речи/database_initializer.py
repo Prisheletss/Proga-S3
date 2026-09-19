@@ -22,11 +22,11 @@ c = db.cursor()
 
 
 
-c.execute("DROP TABLE IF EXISTS `trainig_data`")
+c.execute("DROP TABLE IF EXISTS `training_data`")
 
 
 
-c.execute("""CREATE TABLE `trainig_data` (
+c.execute("""CREATE TABLE `training_data` (
   `word` varchar(20),
   `noun` int(1) DEFAULT 0,
   `adjective` int(1) DEFAULT 0,
@@ -66,7 +66,7 @@ files = {
 for filename in files:
     print(filename)
     file = open(f"training data/{filename}.txt", 'r', -1, "utf-8")
-    comand = "INSERT INTO `trainig_data` (`word`, " + f"`{files[filename]}`) VALUES"
+    comand = "INSERT INTO `training_data` (`word`, " + f"`{files[filename]}`) VALUES"
     t = 0
     
     for line in file:

@@ -43,7 +43,7 @@ def grad(target, code):
 
     dW = []
     dB = []
-    step = 0.1
+    step = 0.05
     
     for i in range(output_len):
         dW.append([])
@@ -147,7 +147,7 @@ letters = {
 def study(train_data):
     global W, B
 
-    step = 0.1
+    step = 0.05
 
     word = train_data[0]
     target = train_data[1::]
@@ -159,13 +159,34 @@ def study(train_data):
     c = accuracy(target, result)
 
         
-    print(f"Слово: {word}")
-    print("Точность:", c)
+    #print(f"Слово: {word}")
+    #print("Точность:", c)
 
     dW, dB = grad(target, code)
 
     W -= step*dW
     B -= step*dB
+
+
+
+def tester(word):
+    global W, B
+
+    word = word + (20-len(word))*' '
+    code = [letters[j]/66 for j in word]
+    
+    result = Calculate(code, W, B)
+
+    print("Слово:", word)
+    print("сущ:", result[0])
+    print("прил:", result[1])
+    print("числ:", result[2])
+    print("мм:", result[3])
+    print("глаг:", result[4])
+    print("нар:", result[5])
+    print("прич:", result[6])
+    print("дееприч:", result[7])
+    print("союз:", result[8])
 
     
 
@@ -208,7 +229,7 @@ database = sqlite3.connect("data.db")
 
 cursor = database.cursor()
 
-cursor.execute('SELECT * FROM `trainig_data`')
+cursor.execute('SELECT * FROM `training_data`')
 data = cursor.fetchall()
 
 database.close()
@@ -284,19 +305,23 @@ for asdf in range(4):
 
 
 
-for i in range(10_000):
+for i in range(25_000):
     train = data[randint(0, len(data)-1)]
+    if (i % 250) == 0:
+        word = train[0]
+        tester(word)
+        print('\n')
     study(train)
-    print('')
+    #print('')
 
 
 
 
     
 try:
-    file = open("third generation.txt", 'x')
+    file = open("fourth generation.txt", 'x')
 except FileExistsError:
-    file = open("third generation.txt", 'w')
+    file = open("fourth generation.txt", 'w')
 
 
 
@@ -304,7 +329,7 @@ for i in range(output_len):
     print("progress:", i+1, '/', output_len)
     for j in range(input_len):
         file.write(f"{W[i][j]}\t")
-    file.write(f"{B[i]}\n")
+    file.write(f"{B[i][0]}\n")
 
 
 file.close()
