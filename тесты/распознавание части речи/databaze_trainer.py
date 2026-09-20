@@ -43,7 +43,7 @@ def grad(target, code):
 
     dW = []
     dB = []
-    step = 0.05
+    step = 0.1
     
     for i in range(output_len):
         dW.append([])
@@ -143,11 +143,25 @@ letters = {
 
 
 
+parts = {
+    0: "сущ",
+    1: "прил",
+    2: "числ",
+    3: "мм",
+    4: "глаг",
+    5: "нар",
+    6: "прич",
+    7: "дееприч",
+    8: "союз"
+}
+
+
+
 
 def study(train_data):
     global W, B
 
-    step = 0.05
+    step = 0.1
 
     word = train_data[0]
     target = train_data[1::]
@@ -177,16 +191,18 @@ def tester(word):
     
     result = Calculate(code, W, B)
 
-    print("Слово:", word)
-    print("сущ:", result[0])
-    print("прил:", result[1])
-    print("числ:", result[2])
-    print("мм:", result[3])
-    print("глаг:", result[4])
-    print("нар:", result[5])
-    print("прич:", result[6])
-    print("дееприч:", result[7])
-    print("союз:", result[8])
+    #print("Слово:", word)
+    #print("сущ:", result[0])
+    #print("прил:", result[1])
+    #print("числ:", result[2])
+    #print("мм:", result[3])
+    #print("глаг:", result[4])
+    #print("нар:", result[5])
+    #print("прич:", result[6])
+    #print("дееприч:", result[7])
+    #print("союз:", result[8])
+
+    print(word, "--", parts[result.index(max(result))])
 
     
 
@@ -196,29 +212,39 @@ def tester(word):
 
 
 
-file = open("weights and biases.txt", 'r')
+
+
 
 W = []
 B = []
+input_len = 0
+output_len = 0
+
+def init(name):
+    global W, B, input_len, output_len
+
+    W = []
+    B = []
+    input_len = 0
+    output_len = 0
+    
+    file = open(f"{name}.txt", 'r') # weights and biases
+
+    line = file.readline()
+    line = line.split('\t')
+    input_len, output_len = map(int, line)
 
 
-line = file.readline()
-line = line.split('\t')
-input_len, output_len = map(int, line)
+    for line in file:
+        line = list(map(float, line.split('\t')))
+        W.append(line[0:-1])
+        B.append([line[-1]])
+
+    file.close()
 
 
-for line in file:
-    line = list(map(float, line.split('\t')))
-    W.append(line[0:-1])
-    B.append([line[-1]])
-
-file.close()
-
-
-W = numpy.array(W)
-B = numpy.array(B)
-
-
+    W = numpy.array(W)
+    B = numpy.array(B)
 
 
 
@@ -304,7 +330,7 @@ for asdf in range(4):
 
 
 
-
+"""
 for i in range(25_000):
     train = data[randint(0, len(data)-1)]
     if (i % 250) == 0:
@@ -333,7 +359,42 @@ for i in range(output_len):
 
 
 file.close()
+"""
 
+
+
+t = 0
+while True:
+    init("night_1")
+    train = data[randint(0, len(data)-1)]
+
+    if (t % 1000) == 0:
+        word = train[0]
+        tester(word)
+        #print('\n')
+        t = 0
+
+    study(train)
+    t += 1
+
+
+    try:
+        file = open("night_1.txt", 'x')
+    except FileExistsError:
+        file = open("night_1.txt", 'w')
+
+
+
+    file.write(f"{input_len}\t{output_len}\n")
+    
+    for i in range(output_len):
+        #print("progress:", i+1, '/', output_len)
+        for j in range(input_len):
+            file.write(f"{W[i][j]}\t")
+        file.write(f"{B[i][0]}\n")
+
+
+    file.close()
 
 
 
