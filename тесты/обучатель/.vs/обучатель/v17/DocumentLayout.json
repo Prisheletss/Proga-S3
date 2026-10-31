@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\GitHub\\Proga-S3\\\u0442\u0435\u0441\u0442\u044B\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBCA5A5-5A19-4452-8D7A-6544D4ED350B}|\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.vcxproj|D:\\GitHub\\Proga-S3\\\u0442\u0435\u0441\u0442\u044B\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7BBCA5A5-5A19-4452-8D7A-6544D4ED350B}|\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.vcxproj|solutionrelative:\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp",
+              "DocumentMoniker": "D:\\GitHub\\Proga-S3\\\u0442\u0435\u0441\u0442\u044B\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp",
+              "RelativeDocumentMoniker": "\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp",
+              "ToolTip": "D:\\GitHub\\Proga-S3\\\u0442\u0435\u0441\u0442\u044B\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp*",
+              "RelativeToolTip": "\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C\\\u043E\u0431\u0443\u0447\u0430\u0442\u0435\u043B\u044C.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-10-01T10:38:56.678Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
