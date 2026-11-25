@@ -172,6 +172,13 @@ def study(train_data):
     result = Calculate(code, W, B)
     c = accuracy(target, result)
 
+    try:
+        cost_evo = open("cost.txt", 'a')
+    except FileNotFoundError:
+        cost_evo = open("cost.txt", 'x')
+
+    cost_evo.write(f"{c}\n")
+    cost_evo.close()
         
     #print(f"Слово: {word}")
     #print("Точность:", c)
@@ -203,6 +210,8 @@ def tester(word):
     #print("союз:", result[8])
 
     print(word, "--", parts[result.index(max(result))])
+
+
 
     
 
@@ -365,7 +374,7 @@ file.close()
 
 t = 0
 while True:
-    init("night_1")
+    init("weights and biases")
     train = data[randint(0, len(data)-1)]
 
     if (t % 1000) == 0:
@@ -379,9 +388,14 @@ while True:
 
 
     try:
-        file = open("night_1.txt", 'x')
+        file = open("weights and biases.txt", 'x')
     except FileExistsError:
-        file = open("night_1.txt", 'w')
+        file = open("weights and biases.txt", 'w')
+
+    try:
+        evo = open("evolution.txt", 'a')
+    except FileNotFoundError:
+        evo = open("evolution.txt", 'x')
 
 
 
@@ -391,106 +405,15 @@ while True:
         #print("progress:", i+1, '/', output_len)
         for j in range(input_len):
             file.write(f"{W[i][j]}\t")
+            evo.write(f"{W[i][j]}\t")
         file.write(f"{B[i][0]}\n")
+        evo.write(f"{B[i][0]}\t")
+    evo.write("\n")
 
 
     file.close()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    evo.close()
 
 
 

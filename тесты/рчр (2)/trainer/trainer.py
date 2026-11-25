@@ -223,7 +223,7 @@ while True:
     #if (t % 2) == 0:
     word = train[0]
     test(word)
-    print('\n')
+    #print('\n')
     #t = 0
 
     study(train)
@@ -239,7 +239,7 @@ while True:
     file.write(f"{len(neurons)}\n")
 
     for i in range(len(neurons) - 1):
-        print(i + 1, '/', len(neurons) - 1)
+        #print(i + 1, '/', len(neurons) - 1)
         file.write('\n')
         file.write(f"{neurons[i]} {neurons[i + 1]}\n")
 
