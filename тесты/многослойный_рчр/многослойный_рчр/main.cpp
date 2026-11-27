@@ -1,0 +1,35 @@
+﻿# include <iostream>
+# include <fstream>
+# include <sstream>
+# include <string>
+# include <vector>
+
+# include "Eigen/Dense"
+
+using namespace std;
+
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+
+    /*
+    // Фиксированная матрица 2x2 (double)
+    Eigen::Matrix2d mat;
+    mat << 1, 2,
+        3, 4;
+
+    // Фиксированный вектор из 2-х элементов
+    Eigen::Vector2d vec(5, 6);
+
+    // Матрично-векторное умножение
+    Eigen::Vector2d result = mat * vec;
+    std::cout << "Результат: " << result.transpose() << std::endl;
+    return 0;
+    */
+
+
+
+}
+
