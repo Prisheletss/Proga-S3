@@ -5,6 +5,7 @@
 # include <vector>
 
 # include "Eigen/Dense"
+# include "sqlite3.h"
 
 using namespace std;
 

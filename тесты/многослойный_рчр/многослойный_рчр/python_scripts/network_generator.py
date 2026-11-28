@@ -78,12 +78,18 @@ for i in range(len(neurons)-1):
 
     c.execute(request)
 
+    request = f"INSERT INTO m_{i} VALUES "
+    for j in range(neurons[i+1]):
+        request += f"({j}, "
+        for k in range(neurons[i]):
+            request += f"{10*random() - 5}"
+            request += ',' if (k < neurons[i]-1) else ')'
+        request += ", " if (j < neurons[i+1]-1) else ';'
 
-    for j in range(neurons[i]):
-        request = f"INSERT INTO m_{i} VALUES "
-        row = "("
-        for k in range(neurons[i+1]):
-            row += f"{10*random() - 5}"
-            row += ',' if (k < neurons[i+1]-1) else ")"
+    c.execute(request)
 
 
+
+
+db.commit()
+db.close()

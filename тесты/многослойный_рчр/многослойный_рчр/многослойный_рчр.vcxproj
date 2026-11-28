@@ -102,7 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\GitHub\Proga-S3\тесты\многослойный_рчр\многослойный_рчр\eigen-5.0.1;D:\GitHub\Proga-S3\тесты\многослойный_рчр\многослойный_рчр\eigen-5.0.1\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GitHub\Proga-S3\тесты\многослойный_рчр\многослойный_рчр\sqlite-src-3540100\src;D:\GitHub\Proga-S3\тесты\многослойный_рчр\многослойный_рчр\sqlite-src-3540100;D:\GitHub\Proga-S3\тесты\многослойный_рчр\многослойный_рчр\eigen-5.0.1;D:\GitHub\Proga-S3\тесты\многослойный_рчр\многослойный_рчр\eigen-5.0.1\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,6 +125,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sqlite3.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sqlite3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
